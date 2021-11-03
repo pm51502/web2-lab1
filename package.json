@@ -13,7 +13,8 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "ejs": "^3.1.5",
-    "express": "^4.15.2",
+    "express": "^4.17.1",
+    "express-openid-connect": "^2.5.1",
     "moment": "^2.29.1"
   },
   "devDependencies": {
