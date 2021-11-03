@@ -13,5 +13,7 @@ Dockerfile
 docker-compose.yml
 
 #HTTPS
+*.key
+*.cert
 .key
 .cert
