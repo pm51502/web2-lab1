@@ -19,7 +19,8 @@ const config = {
   authRequired: false,
   idpLogout: true, //login not only from the app, but also from identity provider
   secret: process.env.SECRET,
-  baseURL: `https://localhost:${port}`,
+  //baseURL: `https://localhost:${port}`,
+  baseURL: `https://web2lab1.herokuapp.com/`,
   clientID: process.env.CLIENT_ID,
   issuerBaseURL: "https://dev-3ifzacnj.us.auth0.com",
   clientSecret: process.env.CLIENT_SECRET,
