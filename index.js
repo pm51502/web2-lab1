@@ -43,6 +43,9 @@ app.get("/profile", requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
+app.listen(port, () => console.log(`Listening on ${port}`));
+
+/*
 if(process.env.port) {
   https.createServer({
         key: fs.readFileSync("server.key"),
@@ -53,4 +56,4 @@ if(process.env.port) {
       });
 } else {
   app.listen(port, () => console.log(`Listening on ${port}`));
-}
+}*/
