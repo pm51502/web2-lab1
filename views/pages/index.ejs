@@ -10,11 +10,27 @@
       integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
       crossorigin=""
     />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/site.css">
   </head>
   <body>
-    <p id="latitude"></p>
-    <p id="longitude"></p>
-    <div id="map" style="height: 600px"></div>
+    <ul>
+      <li><a class="active" href="/">Home</a></li>
+      <% if (user.isAuthenticated) { %>
+        <li><a href="/logout">Logout</a></li>
+      <% } else { %>
+        <li><a href="/login">Login</a></li>
+      <% } %>
+        <li class="li-email"><a href="#"><%= user.email%></a></li>
+    </ul>
+    
+    <div id="map" style="height: 870px"></div>
+    
+    <ul>
+      <li class="li-coordinate" id="latitude"></li>
+      <li class="li-coordinate" id="longitude"></li>
+    </ul>
+    
     <script
       src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
       integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
