@@ -40,12 +40,7 @@ const config = {
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
 
-var users = [{
-  email: "rops@gmail.com",
-  latitude: 45.8169859,
-  longitude: 18.027589,
-  timestamp: '04/10/2021 20:29:05' //
-}];
+var users = [];
 
 app.get("/", (req, res) => {
   req.user = {
@@ -71,18 +66,20 @@ app.get("/user", (req, res) => {
 });
 
 app.get("/users", (req, res) => {
-  console.log("GET /users")
-
-  let email = req.body
-  if(email != undefined){
-    console.log(email)
-  }
   res.send(JSON.stringify(users));
 });
 
 app.post("/users", (req, res) => {
   let user = req.body;
-  if(!users.find(u => u.email == user.email)) users.push(user);
+  currentUser = users.find(u => u.email == user.email);
+
+  if(currentUser == undefined){
+    users.push(user);
+  } else {
+    currentUser.latitude = user.latitude;
+    currentUser.longitude = user.longitude;
+    currentUser.timestamp = user.timestamp;
+  }
 });
 
 

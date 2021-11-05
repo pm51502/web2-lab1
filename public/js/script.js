@@ -28,7 +28,6 @@ function success(position) {
       isAuthenticated = true;
       email = user.email
     }
-    console.log(user);
 
     getMap(latitude, longitude, timestamp, email);
 
@@ -85,10 +84,7 @@ function drawMarkers(email) {
   }).then(res => {
     return res.json()
   }).then(users => {
-    console.log(users);     
-    console.log("wmap: " + wmap);
-
-    //arr.slice(Math.max(arr.length - 5, 0))
+    
     users.slice(Math.max(users.length -5, 0)).forEach(user => {
       L.marker([user.latitude, user.longitude]).bindPopup(`${user.email} ${user.timestamp}`).addTo(wmap);
     });
