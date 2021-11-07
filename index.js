@@ -26,8 +26,8 @@ const config = {
   authRequired: false,
   idpLogout: true, //login not only from the app, but also from identity provider
   secret: process.env.SECRET,
-  //baseURL: `https://localhost:${port}`,
-  baseURL: `https://web2lab1.herokuapp.com/`,
+  baseURL: `https://localhost:${port}`,
+  //baseURL: `https://web2lab1.herokuapp.com/`,
   clientID: process.env.CLIENT_ID,
   issuerBaseURL: "https://dev-3ifzacnj.us.auth0.com",
   clientSecret: process.env.CLIENT_SECRET,
@@ -65,20 +65,26 @@ app.get("/user", (req, res) => {
   }
 });
 
-app.get("/users", (req, res) => {
+app.get("/users", requiresAuth(), (req, res) => {
   res.send(JSON.stringify(users));
 });
 
-app.post("/users", (req, res) => {
+app.post("/users", requiresAuth(), (req, res) => {
   let user = req.body;
-  currentUser = users.find(u => u.email == user.email);
+
+  let currentUser = users.find(u => u.email == user.email);
 
   if(currentUser == undefined){
     users.push(user);
   } else {
-    currentUser.latitude = user.latitude;
-    currentUser.longitude = user.longitude;
-    currentUser.timestamp = user.timestamp;
+    let i = users.indexOf(currentUser);
+    if(i > -1) users.splice(i, 1);
+
+    users.push(user);
+
+    //currentUser.latitude = user.latitude;
+    //currentUser.longitude = user.longitude;
+    //currentUser.timestamp = user.timestamp;
   }
 });
 
