@@ -85,6 +85,7 @@ function drawMarkers(email) {
     return res.json()
   }).then(users => {
     
+    users.pop();
     users.slice(Math.max(users.length -5, 0)).forEach(user => {
       L.marker([user.latitude, user.longitude]).bindPopup(`${user.email} ${user.timestamp}`).addTo(wmap);
     });
